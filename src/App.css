@@ -25,10 +25,15 @@ div{
   padding-left: 20px;
 }
 
+.title{
+  width: 100%;
+  text-align: center;
+}
+
 .list {
   padding-left: 20px;
   text-align: left;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #eaeaea;
   margin-top: 2em;
 }
 
@@ -37,11 +42,31 @@ div{
   border: none;
   background: transparent;
   float: right;
+  padding-right: 5em;
 }
 
 .like{
   float: right;
   padding-right: 10px;
+  padding-right: 5em;
+
+}
+
+.menu{
+  width: 15px;
+  height: 15px;
+}
+
+.menu_btn{
+  border: none;
+  background: transparent;
+  float: left;
+}
+
+.del_btn{
+  border: none;
+  background: transparent;
+  float: right;
 }
 
 .App-logo {
