@@ -1,0 +1,9 @@
+.searchBar {
+    padding:6px;
+    margin:6px;
+}
+
+.searchBar ul li {
+    text-align:left;
+    text-decoration:none;
+}

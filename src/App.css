@@ -25,6 +25,11 @@ div{
   padding-left: 20px;
 }
 
+.search-nav{
+  width: 100%;
+  text-align: right;
+}
+
 .title{
   width: 100%;
   text-align: center;
@@ -34,7 +39,10 @@ div{
   padding-left: 20px;
   text-align: left;
   border-bottom: 1px solid #eaeaea;
-  margin-top: 2em;
+  margin-top: 1.5em;
+}
+.list_tit:hover{
+  text-decoration: underline;
 }
 
 .btn{
@@ -42,14 +50,25 @@ div{
   border: none;
   background: transparent;
   float: right;
-  padding-right: 5em;
+}
+
+.clo_btn{
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 4px;
+  margin-left: 6px;
+  margin-top: 2px;
+  background: transparent;
+}
+
+.clo_btn:hover{
+  color: #fff;
+  background: #000;
 }
 
 .like{
   float: right;
   padding-right: 10px;
-  padding-right: 5em;
-
 }
 
 .menu{
@@ -57,15 +76,38 @@ div{
   height: 15px;
 }
 
-.menu_btn{
-  border: none;
-  background: transparent;
-  float: left;
+.add_btn{
+  border: 2px solid #000;
+  color: #000;
+  background: #fff;
+  margin-left: 1em;
+  margin-top: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.add_btn:hover{
+  background: #000;
+  color: #fff;
 }
 
 .del_btn{
   border: none;
   background: transparent;
+  float: right;
+}
+
+.top{
+  width: 4em;
+  height: 4em;
+  font-weight: bold;
+  padding :10px 10px;
+  background-color: #000;
+  color:#fff;
+  border: 1px solid rgb(210, 204, 193);
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
   float: right;
 }
 
