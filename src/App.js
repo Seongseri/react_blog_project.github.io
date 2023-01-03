@@ -1,11 +1,9 @@
-// /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import MySearchBar from './MySearchBar';
 
 function App() {
 
-  const [글제목, 글제목변경] = useState(['남자코드 추천 ', '강남 우동 맛집', '문구 추천']);
+  const [inputTitle, setInputTitle] = useState(['남자코드 추천 ', '강남 우동 맛집', '문구 추천']);
  
   let [따봉, 따봉변경] = useState([0,0,0]);
   
@@ -23,8 +21,8 @@ function App() {
   let getMinutes = now.getMinutes();
   let todayFormal = String(todayYear) + "." + String(todayMonth) + "." + String(todayDay);
   let currentTime = String(getHours) + ":" + String(getMinutes);
-  const[현재시간, 현재시간변경] = useState([currentTime, currentTime, currentTime]);
-  let[현재날짜, 현재날짜변경] = useState([todayFormal, todayFormal, todayFormal]);
+  const[nowTime,setNowTime] = useState([currentTime, currentTime, currentTime]);
+  let[nowDate, setNowDate] = useState([todayFormal, todayFormal, todayFormal]);
   let[arrClick, 몇번째리스트] = useState(0);
 
   const MySearchBar = (props) => {
@@ -35,19 +33,19 @@ function App() {
       setTitle(e.target.value)
     }
 
-    const shouldDisplayButton = 글제목.length > 0;
+    const shouldDisplayButton = title.length > 0;
 
     const handleInputClear = () => {
       setTitle("")
     }
 
     const filteredProducts = products.filter((product) => {
-        return product.includes(글제목);
+        return product.includes(inputTitle);
     })
 
     return(
         <div className="searchBar">
-            <input type="text" value={글제목변경} placeholder="search" onChange={handleInputChange} />
+            <input type="text" value={title} placeholder="search" onChange={handleInputChange} />
             {shouldDisplayButton && <button className='clo_btn' onClick={handleInputClear}>Ｘ</button>}
 
             <ul>
@@ -83,17 +81,17 @@ function App() {
   }, [])
   
   function orderTitle() {
-      let newOrder = [...글제목].sort();
-      글제목변경(newOrder);
+      let newOrder = [...inputTitle].sort();
+      setInputTitle(newOrder);
   };
   
   function addPost(b, i) {
-    const newPosts = [...글제목];
+    const newPosts = [...inputTitle];
     newPosts.unshift(입력값);
-    글제목변경(newPosts);
-    const newToday = [...현재날짜];
-    newToday.unshift(현재날짜[0]);
-    현재날짜변경(newToday);
+    setInputTitle(newPosts);
+    const newToday = [...nowDate];
+    newToday.unshift(nowDate[0]);
+    setNowDate(newToday);
     const newLiked = [...따봉];
     newLiked.unshift(0);
     따봉변경(newLiked);
@@ -101,16 +99,16 @@ function App() {
 
   return (
     <div className="App">
-      <div class='black-nav'>
+      <div className='black-nav'>
         <h4 className='title'>Blog</h4>
       </div>
 
-      <div class='search-nav'><MySearchBar className='search' searchItems={글제목}/></div>
+      <div className='search-nav'><MySearchBar className='search' searchItems={inputTitle}/></div>
 
       {
-        글제목.map(function(a, i){
+        inputTitle.map(function(a, i){
           return (
-            <div className="list" key="0">
+            <div className="list" key={a}>
               <h3 className='list_tit' onClick={(e) => {
                 setModal(!modal); 
                 setTitle(i);
@@ -118,17 +116,17 @@ function App() {
                 e.stopPropagation();
                 let arrClick = [i];
                 몇번째리스트(arrClick);
-                }}>{글제목[i]} 
+                }}>{inputTitle[i]} 
                 <span><button className='btn' onClick={(e) => {
                   e.stopPropagation();
-                  const newPosts = [...글제목];
+                  const newPosts = [...inputTitle];
                   const newLiked = [...따봉];
                   newPosts.splice(i, 1);
                   newLiked.splice(i, 1);
-                  글제목변경(newPosts);
+                  setInputTitle(newPosts);
                   따봉변경(newLiked);
               }}>✖</button></span></h3>
-              <p>{현재날짜[i]}
+              <p>{nowDate[i]}
                 <span className='like' onClick={(e)=>{
                   e.stopPropagation(); 
                   let copy = [...따봉]; 
@@ -143,7 +141,7 @@ function App() {
       }
 
       {
-        modal == true ? <Modal_Info setModal={setModal} title={title} 글제목={글제목} 현재날짜={현재날짜} 현재시간={현재시간} arrClick={arrClick} /> : null //color={'skyblue'}
+        modal == true ? <Modal_Info setModal={setModal} title={title} inputTitle={inputTitle} nowDate={nowDate} nowTime={nowTime} arrClick={arrClick} /> : null
       }
 
     <div>
@@ -174,8 +172,8 @@ function Modal_Info(props, i){
           props.setModal(props.modal);}}>
             ─
       </button>
-      <h2>{props.글제목[props.title]}</h2>
-      <p>{props.현재날짜[props.arrClick]} <span>{props.현재시간[props.arrClick]}</span></p>
+      <h2>{props.inputTitle[props.title]}</h2>
+      <p>{props.nowDate[props.arrClick]} <span>{props.nowTime[props.arrClick]}</span></p>
       <p>상세내용</p>
     </div>
   )
