@@ -30,6 +30,17 @@ div{
   text-align: right;
 }
 
+.search {
+  padding:6px;
+  margin:6px;
+  outline: none;
+}
+
+.searchBar ul li {
+  text-align:left;
+  text-decoration:none;
+}
+
 .title{
   width: 100%;
   text-align: center;
